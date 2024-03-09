@@ -70,8 +70,6 @@ public class AlbumRepository : IAlbumRepository
     public async Task<List<AlbumViewModel>> GetAllAlbums()
     {
         return await _context.Albums
-            .Include(a => a.ChildAlbums)
-            .ThenInclude(ca => ca.CoverPhoto)
             .Include(a => a.Photos)
             .Select(a => new AlbumViewModel
             {
@@ -80,13 +78,7 @@ public class AlbumRepository : IAlbumRepository
                 Year = a.Year,
                 CoverPhotoId = a.CoverPhotoId,
                 ParentAlbumId = a.ParentAlbumId,
-                PhotoCount = a.Photos.Count(),
-                ChildAlbums = a.ChildAlbums.Select(ca => new ChildAlbumViewModel
-                {
-                    Id = ca.Id,
-                    Name = ca.Name,
-                    CoverPhotoId = ca.CoverPhotoId
-                }).ToList()
+                PhotoCount = a.Photos.Count()
             })
             .ToListAsync();
     }
