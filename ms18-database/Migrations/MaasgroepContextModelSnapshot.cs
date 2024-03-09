@@ -760,6 +760,9 @@ namespace Maasgroep.Database.Migrations
 
                     b.HasIndex("MemberModifiedId");
 
+                    b.HasIndex("Name")
+                        .IsUnique();
+
                     b.ToTable("costCentre", "receipt");
                 });
 
@@ -1179,7 +1182,7 @@ namespace Maasgroep.Database.Migrations
                     b.HasOne("Maasgroep.Database.Context.Tables.PhotoAlbum.Album", "ParentAlbum")
                         .WithMany("ChildAlbums")
                         .HasForeignKey("ParentAlbumId")
-                        .OnDelete(DeleteBehavior.Restrict);
+                        .OnDelete(DeleteBehavior.Cascade);
 
                     b.Navigation("CoverPhoto");
 

@@ -500,7 +500,7 @@ namespace Maasgroep.Database
                 entity.HasMany(f => f.ChildAlbums)
                     .WithOne(f => f.ParentAlbum)
                     .HasForeignKey(f => f.ParentAlbumId)
-                    .OnDelete(DeleteBehavior.Restrict);
+                    .OnDelete(DeleteBehavior.Cascade);
 
                 entity.HasMany(f => f.Photos)
                     .WithOne(p => p.AlbumLocation)
@@ -548,7 +548,8 @@ namespace Maasgroep.Database
 
                 entity.HasMany(p => p.Likes)
                     .WithOne(l => l.Photo)
-                    .HasForeignKey(l => l.PhotoId);
+                    .HasForeignKey(l => l.PhotoId)
+                    .OnDelete(DeleteBehavior.Cascade);
             });
         }
 
