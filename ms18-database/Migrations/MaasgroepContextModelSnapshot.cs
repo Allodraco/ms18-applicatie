@@ -1212,7 +1212,8 @@ namespace Maasgroep.Database.Migrations
                 {
                     b.HasOne("Maasgroep.Database.Context.Tables.PhotoAlbum.Album", "AlbumLocation")
                         .WithMany("Photos")
-                        .HasForeignKey("AlbumLocationId");
+                        .HasForeignKey("AlbumLocationId")
+                        .OnDelete(DeleteBehavior.Cascade);
 
                     b.HasOne("Maasgroep.Database.Admin.Member", "Uploader")
                         .WithMany()

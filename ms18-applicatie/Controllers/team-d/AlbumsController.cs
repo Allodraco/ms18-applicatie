@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Maasgroep.Database.Context.Tables.PhotoAlbum;
+using Microsoft.AspNetCore.Mvc;
 using ms18_applicatie.Attributes;
 using ms18_applicatie.Interfaces;
 using ms18_applicatie.Models.team_d;
@@ -138,6 +139,7 @@ public class AlbumsController : ControllerBase
             var deleteSuccess = await _albumRepository.DeleteAlbum(id);
 
             if (!deleteSuccess) return NotFound($"Album with ID {id} not found.");
+            
             return NoContent();
         }
         catch (Exception ex)

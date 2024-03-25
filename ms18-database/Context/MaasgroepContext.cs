@@ -504,7 +504,8 @@ namespace Maasgroep.Database
 
                 entity.HasMany(f => f.Photos)
                     .WithOne(p => p.AlbumLocation)
-                    .HasForeignKey(p => p.AlbumLocationId);
+                    .HasForeignKey(p => p.AlbumLocationId)
+                    .OnDelete(DeleteBehavior.Cascade);
 
                 entity.HasOne(a => a.CoverPhoto)
                     .WithMany()

@@ -81,6 +81,8 @@ public class PhotoRepository : IPhotoRepository
             query = query.Where(p => !p.NeedsApproval);
         }
 
+        query = query.Include(p => p.Likes);
+
         var totalCount = await query.CountAsync();
         var photos = await query.OrderBy(p => p.UploadDate)
             .Skip((pageNumber - 1) * pageSize)
